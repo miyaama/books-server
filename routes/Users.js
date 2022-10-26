@@ -18,7 +18,7 @@ router.post("/register", async (req, res) => {
   const {
     email,
     password,
-    name,
+    username,
     status = "active",
     access = "user",
   } = req.body;
@@ -28,17 +28,16 @@ router.post("/register", async (req, res) => {
   if (user) {
     res.send({ message: "E-mail is already used" });
   } else {
-    bcrypt.hash(password, 10).then((hash) => {
-      Users.create({
-        email: email,
+    bcrypt.hash(password, 10).then(async (hash) => {
+      const newUser = await Users.create({
+        email,
         password: hash,
-        name: name,
-        status: status,
-        access: access,
+        username,
+        status,
+        access,
       });
+      res.send(newUser);
     });
-    const newUser = await Users.findOne({ where: { email: email } });
-    res.send(newUser);
   }
 });
 

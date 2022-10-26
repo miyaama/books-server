@@ -15,6 +15,18 @@ app.use("/users", userRouter);
 const collectionRouter = require("./routes/Collections");
 app.use("/collections", collectionRouter);
 
+const itemRouter = require("./routes/Items");
+app.use("/items", itemRouter);
+
+const commentRouter = require("./routes/Comments");
+app.use("/comments", commentRouter);
+
+const likeRouter = require("./routes/Likes");
+app.use("/likes", likeRouter);
+
+const tagRouter = require("./routes/Tags");
+app.use("/tags", tagRouter);
+
 // app.use(bodyParser.urlencoded({ extended: true }));
 
 db.sequelize.sync().then(() => {

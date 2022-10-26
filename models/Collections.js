@@ -1,14 +1,28 @@
 module.exports = (sequelize, DataTypes) => {
-  const Collections = sequelize.define("Users", {
+  const Collections = sequelize.define("Collections", {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    tegs: {
+    description: {
       type: DataTypes.STRING,
-      allowNull: false,
+    },
+    theme: {
+      type: DataTypes.STRING,
+    },
+    image: {
+      type: DataTypes.STRING,
+    },
+    itemTypes: {
+      type: DataTypes.STRING,
     },
   });
+
+  Collections.associate = (models) => {
+    Collections.hasMany(models.Items, {
+      onDelete: "cascade",
+    });
+  };
 
   return Collections;
 };
