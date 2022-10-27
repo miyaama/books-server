@@ -7,18 +7,17 @@
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
+    "username": "jxq9g74fopfhobq7",
+    "password": "cygib39pwzllme6n",
+    "database": "gg7w73g73vdrkfhf",
+    "host": "ltnya0pnki2ck9w8.chr7pe7iynqr.eu-west-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": "jxq9g74fopfhobq7",
+    "password": "cygib39pwzllme6n",
+    "database": "gg7w73g73vdrkfhf",
+    "host": "ltnya0pnki2ck9w8.chr7pe7iynqr.eu-west-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
 }
-
