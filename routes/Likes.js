@@ -5,8 +5,6 @@ const { Likes } = require("../models");
 router.post("/", async (req, res) => {
   const { ItemId, UserId } = req.body;
 
-  console.log(true, ItemId, UserId);
-
   const found = await Likes.findOne({
     where: { ItemId: ItemId, UserId: UserId },
   });

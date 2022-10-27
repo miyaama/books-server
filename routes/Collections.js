@@ -40,11 +40,16 @@ router.put("/update/:id", async (req, res) => {
   const id = req.params.id;
 
   const { name, description, theme, image, itemTypes } = req.body;
-  console.log( true, name, description, theme, image, itemTypes)
 
   try {
     await Collections.update(
-      { name: name, description: description, theme: theme, image: image, itemTypes: itemTypes},
+      {
+        name: name,
+        description: description,
+        theme: theme,
+        image: image,
+        itemTypes: itemTypes,
+      },
       { where: { id: id } }
     );
     res.status(200);
