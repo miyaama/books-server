@@ -9,11 +9,11 @@ router.get("/:itemId", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { comment, username, userId, ItemId} = req.body;
+  const { comment, username, useri, ItemId} = req.body;
   const newComment = await Comments.create({
     comment,
     username,
-    userId,
+    useri,
     ItemId,
   });
   res.send(newComment);

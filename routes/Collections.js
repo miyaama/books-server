@@ -24,14 +24,13 @@ router.get("/:id", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { name, description, theme, image, itemTypes, UserId } = req.body;
+  const { name, description, theme, itemTypes, UserId } = req.body;
   const newCollection = await Collections.create({
     name,
     description,
     theme,
-    image,
-    itemTypes,
     UserId,
+    itemTypes,
   });
   res.send(newCollection);
 });
@@ -39,16 +38,15 @@ router.post("/", async (req, res) => {
 router.put("/update/:id", async (req, res) => {
   const id = req.params.id;
 
-  const { name, description, theme, image, itemTypes } = req.body;
+  const { name, description, theme, itemTypes } = req.body;
 
   try {
     await Collections.update(
       {
-        name: name,
-        description: description,
-        theme: theme,
-        image: image,
-        itemTypes: itemTypes,
+        name,
+        description,
+        theme,
+        itemTypes,
       },
       { where: { id: id } }
     );

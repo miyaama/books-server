@@ -28,7 +28,10 @@ router.get("/bytag/:tag", async (req, res) => {
 });
 
 router.get("/lastitems", async (req, res) => {
-  const items = await Items.findAll({ order: [["id", "DESC"]] });
+  const items = await Items.findAll({
+    order: [["id", "DESC"]],
+    include: [Likes],
+  });
   const lastItems = items.slice(0, 5);
   const result = await Promise.all(
     lastItems.map(async (item) => {
@@ -47,6 +50,7 @@ router.get("/lastitems", async (req, res) => {
         tags,
         collectionName: collection.dataValues.name,
         userName: user.dataValues.username,
+        itemTypes: collection.dataValues.itemTypes,
       };
     })
   );
@@ -55,7 +59,7 @@ router.get("/lastitems", async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { name, tags, image, CollectionId } = req.body;
+  const { name, tags, field, CollectionId } = req.body;
 
   try {
     let tagsIds = await tags.reduce(async (accP, tag) => {
@@ -73,7 +77,7 @@ router.post("/", async (req, res) => {
     const item = await Items.create({
       name,
       tags: tagsIds,
-      image,
+      field,
       CollectionId,
     });
 
@@ -97,7 +101,7 @@ router.delete("/:id", async (req, res) => {
 
 router.put("/update/:id", async (req, res) => {
   const id = req.params.id;
-  const { name, tags, image } = req.body;
+  const { name, tags, field } = req.body;
 
   try {
     let tagsIds = await tags.reduce(async (accP, tag) => {
@@ -112,7 +116,10 @@ router.put("/update/:id", async (req, res) => {
       return acc;
     }, Promise.resolve([]));
 
-    await Items.update({ name: name, tags: tagsIds }, { where: { id: id } });
+    await Items.update(
+      { name: name, tags: tagsIds, field: field },
+      { where: { id: id } }
+    );
     res.status(200);
     res.send("Ok");
   } catch (error) {

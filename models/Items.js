@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         this.setDataValue("tags", val.join(";"));
       },
     },
-    image: {
+    field: {
       type: DataTypes.STRING,
     },
   });
