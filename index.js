@@ -27,7 +27,6 @@ app.use("/likes", likeRouter);
 const tagRouter = require("./routes/Tags");
 app.use("/tags", tagRouter);
 
-// app.use(bodyParser.urlencoded({ extended: true }));
 
 db.sequelize.sync().then(() => {
   app.listen(port, () => {
