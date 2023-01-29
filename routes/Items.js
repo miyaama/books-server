@@ -15,7 +15,7 @@ router.get("/bycollection/:collectionId", async (req, res) => {
   res.send({ collection, items });
 });
 
-router.get("/:bookId", async (req, res) => {
+router.get("byBookId/:bookId", async (req, res) => {
   const bookId = req.params.bookId;
 
   let items = await Items.findAll({
