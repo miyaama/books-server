@@ -15,6 +15,17 @@ router.get("/bycollection/:collectionId", async (req, res) => {
   res.send({ collection, items });
 });
 
+router.get("/:id", async (req, res) => {
+  const id = req.params.id;
+
+  let items = await Items.findAll({
+    where: { id: id },
+    include: [Likes],
+  });
+
+  res.send(items);
+});
+
 router.get("/bytag/:tag", async (req, res) => {
   const tag = req.params.tag;
   const items = await Items.findAll({
