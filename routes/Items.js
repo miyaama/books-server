@@ -15,11 +15,11 @@ router.get("/bycollection/:collectionId", async (req, res) => {
   res.send({ collection, items });
 });
 
-router.get("/:id", async (req, res) => {
-  const id = req.params.id;
+router.get("/:bookId", async (req, res) => {
+  const id = req.params.bookId;
 
   let items = await Items.findAll({
-    where: { id: id },
+    where: { id: bookId },
     include: [Likes],
   });
 
