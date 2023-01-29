@@ -16,7 +16,7 @@ router.get("/bycollection/:collectionId", async (req, res) => {
 });
 
 router.get("/:bookId", async (req, res) => {
-  const id = req.params.bookId;
+  const bookId = req.params.bookId;
 
   let items = await Items.findAll({
     where: { id: bookId },
